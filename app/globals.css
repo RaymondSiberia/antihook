@@ -261,7 +261,7 @@ footer p { max-width: 620px; margin: 0; color: rgba(255,255,255,.55); font-size:
   .footer-actions { align-items: flex-start; flex-direction: column; }
   .story-dialog { padding: 28px 20px; box-shadow: 8px 8px 0 var(--lime); }
   .hero { min-height: calc(100vh - 70px); padding: 55px 22px 70px; }
-  .hero h1 { font-size: 57px; }.hero-lead { font-size: 17px; margin-top: 27px; }
+  .hero h1 { font-size: 57px; }.hero h1 em { white-space: normal; }.hero-lead { font-size: 17px; margin-top: 27px; }
   .primary-button { width: calc(100% - 8px); }
   .hero-visual { min-height: 350px; }.radar-card { width: 82vw; }.floating-chip { font-size: 9px; }
   .quiz-section, .partners-section { padding-left: 18px; padding-right: 18px; }
