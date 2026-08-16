@@ -22,11 +22,11 @@ export function StoryFormDialog({ isOpen, onClose }: StoryFormDialogProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const contactRef = useRef<HTMLInputElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const selectRef = useRef<HTMLSelectElement>(null);
   const storyRef = useRef<HTMLTextAreaElement>(null);
-  const successCloseRef = useRef<HTMLButtonElement>(null);
 
   const reset = useCallback(() => {
     setMethod("");
@@ -78,7 +78,7 @@ export function StoryFormDialog({ isOpen, onClose }: StoryFormDialogProps) {
   }, [closeAndReset, isOpen]);
 
   useEffect(() => {
-    if (isOpen && submitted) successCloseRef.current?.focus();
+    if (isOpen && submitted) closeButtonRef.current?.focus();
   }, [isOpen, submitted]);
 
   function changeMethod(next: ContactMethod) {
@@ -130,6 +130,7 @@ export function StoryFormDialog({ isOpen, onClose }: StoryFormDialogProps) {
       >
         <button
           className="story-close"
+          ref={closeButtonRef}
           type="button"
           aria-label="Закрыть форму"
           onClick={closeAndReset}
@@ -138,9 +139,7 @@ export function StoryFormDialog({ isOpen, onClose }: StoryFormDialogProps) {
         </button>
         {submitted ? (
           <div className="story-success" role="status">
-            <span aria-hidden="true">✓</span>
             <h2 id="story-dialog-title">Спасибо, что поделился</h2>
-            <button ref={successCloseRef} type="button" onClick={closeAndReset}>Закрыть</button>
           </div>
         ) : (
           <>
@@ -195,7 +194,9 @@ export function StoryFormDialog({ isOpen, onClose }: StoryFormDialogProps) {
                 />
                 {errors.story && <p className="story-error" id="story-text-error" role="alert" aria-label={errors.story}>{errors.story}</p>}
               </div>
-              <button type="submit">Рассказать</button>
+              <button className="primary-button story-submit-button" type="submit">
+                Рассказать <span aria-hidden="true">→</span>
+              </button>
             </form>
           </>
         )}

@@ -72,6 +72,8 @@ describe("StoryFormDialog", () => {
     await user.click(screen.getByRole("button", { name: "Рассказать" }));
 
     expect(screen.getByText("Спасибо, что поделился")).toBeInTheDocument();
+    expect(screen.queryByText("✓")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Закрыть" })).not.toBeInTheDocument();
     expect(screen.queryByText(/данные|отправлен|сохранен/i)).not.toBeInTheDocument();
     expect(fetchSpy).not.toHaveBeenCalled();
     expect(localStorage).toHaveLength(0);
@@ -86,7 +88,7 @@ describe("StoryFormDialog", () => {
     await user.type(screen.getByLabelText("Поделись своим случаем"), "Описание случая");
     await user.click(screen.getByRole("button", { name: "Рассказать" }));
 
-    expect(screen.getByRole("button", { name: "Закрыть" })).toHaveFocus();
+    expect(screen.getByRole("button", { name: "Закрыть форму" })).toHaveFocus();
     await user.tab();
     expect(screen.getByRole("button", { name: "Закрыть форму" })).toHaveFocus();
   });

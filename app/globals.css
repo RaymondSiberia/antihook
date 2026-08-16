@@ -220,6 +220,24 @@ footer p { max-width: 620px; margin: 0; color: rgba(255,255,255,.55); font-size:
   color: #b42318;
   font-size: 13px;
 }
+.story-submit-button {
+  min-width: 220px;
+  margin-top: 28px;
+}
+.story-success {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+.story-success h2 {
+  max-width: 520px;
+  margin: 0;
+  font-size: clamp(44px, 7vw, 78px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
 
 .modal-backdrop { position: fixed; inset: 0; z-index: 50; background: rgba(8,14,29,.82); display: grid; place-items: center; padding: 20px; backdrop-filter: blur(8px); animation: fade .18s ease; }
 @keyframes fade { from { opacity: 0; } }
