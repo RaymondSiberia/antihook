@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { StoryFormDialog } from "./components/StoryFormDialog";
 
 type Question = {
   scene: string;
@@ -248,6 +249,7 @@ export default function Home() {
   const [selected, setSelected] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [storyDialogOpen, setStoryDialogOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const quizRef = useRef<HTMLElement>(null);
 
@@ -296,17 +298,22 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="АнтиКрючок — на главную">
+        <a className="brand" href="#top" aria-label="Со мной не случится — на главную">
           <span className="brand-mark">↗</span>
-          <span>АНТИКРЮЧОК</span>
+          <span>СО МНОЙ НЕ СЛУЧИТСЯ</span>
         </a>
-        <a className="header-link" href="#partners">Куда обратиться</a>
+        <div className="header-actions">
+          <button className="story-trigger header-story-trigger" onClick={() => setStoryDialogOpen(true)}>
+            Рассказать о случае
+          </button>
+          <a className="header-link" href="#partners">Куда обратиться</a>
+        </div>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="kicker"><span>12 ситуаций</span> · 7 минут · без регистрации</p>
-          <h1>Тебя легко<br />взять <em>на крючок?</em></h1>
+          <h1>Уверен, что с тобой<br /><em>такого не случится?</em></h1>
           <p className="hero-lead">Проверь, распознаешь ли ты давление, «лёгкие деньги» и опасные просьбы — до того, как они станут проблемой.</p>
           <button className="primary-button" onClick={startQuiz}>
             Начать проверку <span aria-hidden="true">→</span>
@@ -422,10 +429,20 @@ export default function Home() {
       </section>
 
       <footer>
-        <a className="brand footer-brand" href="#top"><span className="brand-mark">↗</span><span>АНТИКРЮЧОК</span></a>
+        <a className="brand footer-brand" href="#top"><span className="brand-mark">↗</span><span>СО МНОЙ НЕ СЛУЧИТСЯ</span></a>
         <p>Учебный тест. Он не заменяет консультацию специалистов или обращение в экстренные службы.</p>
-        <a href="#top">Наверх ↑</a>
+        <div className="footer-actions">
+          <button className="story-trigger footer-story-trigger" onClick={() => setStoryDialogOpen(true)}>
+            Рассказать о случае
+          </button>
+          <a href="#top">Наверх ↑</a>
+        </div>
       </footer>
+
+      <StoryFormDialog
+        isOpen={storyDialogOpen}
+        onClose={() => setStoryDialogOpen(false)}
+      />
 
       {showModal && selected !== null && (
         <div className="modal-backdrop" role="presentation">

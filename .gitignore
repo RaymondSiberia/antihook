@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+.vitest-localstorage*
 
 # next.js
 /.next/
@@ -39,3 +40,4 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+/.worktrees/
